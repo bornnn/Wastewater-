@@ -4,58 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水污染防治設施操作維護(甲級)互動練習系統</title>
-    <!-- 引入 Tailwind CSS 進行快速美化 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-100 min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 min-h-screen flex flex-col justify-between">
 
     <!-- 頂部導覽列 -->
-    <header class="bg-blue-800 text-white shadow-md py-4 px-6">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">水污染防治設施操作維護 (甲級) 題庫練習</h1>
-            <span id="progress-text" class="text-sm bg-blue-700 px-3 py-1 rounded-full">進度: 0 / 300</span>
+    <header class="bg-blue-900 text-white shadow-md py-4 px-6">
+        <div class="max-w-3xl mx-auto flex justify-between items-center">
+            <h1 class="text-lg sm:text-xl font-bold">水污染防治設施 (甲級) 模擬考</h1>
+            <span id="progress-badge" class="text-xs sm:text-sm bg-blue-700 px-3 py-1 rounded-full font-semibold">隨機 50 題</span>
         </div>
     </header>
 
     <!-- 主內容區 -->
-    <main class="max-w-3xl mx-auto w-full p-4 my-6 flex-grow">
-        <div id="quiz-container" class="bg-white rounded-xl shadow-lg p-6 sm:p-8">
-            <!-- 題目與選項將由 JavaScript 動態載入 -->
-            <div id="question-box">
-                <div class="text-sm text-blue-600 font-semibold mb-2" id="question-number">第 1 題 / 共 300 題</div>
-                <h2 id="question-title" class="text-lg sm:text-xl font-bold text-slate-800 mb-6">載入中...</h2>
-                <div id="options-list" class="space-y-3">
-                    <!-- 選項按鈕 -->
-                </div>
+    <main class="max-w-2xl mx-auto w-full p-4 my-6 flex-grow">
+        
+        <!-- 測驗進行中介面 -->
+        <div id="quiz-card" class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-slate-100">
+            <!-- 進度條 -->
+            <div class="w-full bg-slate-200 rounded-full h-2 mb-6">
+                <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
             </div>
 
-            <!-- 答題回饋區 -->
-            <div id="feedback-box" class="mt-6 p-4 rounded-lg hidden">
-                <p id="feedback-text" class="font-bold"></p>
+            <div class="flex justify-between items-center text-sm text-slate-500 mb-2">
+                <span id="question-counter" class="font-semibold text-blue-600">第 1 題 / 共 50 題</span>
+                <span id="score-keeper" class="font-medium text-slate-600">目前得分: 0</span>
             </div>
 
-            <!-- 控制按鈕 -->
-            <div class="mt-8 flex justify-between items-center border-t pt-4">
-                <button id="prev-btn" class="bg-slate-300 text-slate-700 px-5 py-2 rounded-lg font-medium hover:bg-slate-400 transition disabled:opacity-50" disabled>上一題</button>
-                <button id="next-btn" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition">下一題</button>
+            <h2 id="question-title" class="text-lg sm:text-xl font-bold text-slate-800 mb-6 leading-relaxed">載入中...</h2>
+
+            <!-- 選項清單 -->
+            <div id="options-container" class="space-y-3">
+                <!-- 動態生成選項 -->
+            </div>
+
+            <!-- 回饋與解析提示框 -->
+            <div id="feedback-box" class="mt-6 p-4 rounded-xl hidden transition-all">
+                <p id="feedback-text" class="font-bold text-sm sm:text-base"></p>
+            </div>
+
+            <!-- 下一題按鈕 -->
+            <div class="mt-8 flex justify-end">
+                <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium shadow-lg shadow-blue-200 transition hidden">
+                    下一題
+                </button>
             </div>
         </div>
 
-        <!-- 結算畫面 (預設隱藏) -->
-        <div id="result-container" class="bg-white rounded-xl shadow-lg p-8 text-center hidden">
-            <h2 class="text-2xl font-bold text-slate-800 mb-4">🎉 恭喜完成所有練習！</h2>
-            <p class="text-lg text-slate-600 mb-6">您的總得分：<span id="final-score" class="text-blue-600 font-bold text-3xl">0</span> 分</p>
-            <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">重新練習</button>
+        <!-- 測驗結算畫面 (預設隱藏) -->
+        <div id="result-card" class="bg-white rounded-2xl shadow-xl p-8 text-center hidden">
+            <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold shadow-inner">
+                🎉
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">測驗結算報告</h2>
+            <p class="text-slate-500 mb-6">您已完成本次隨機 50 題的模擬考！</p>
+            
+            <div class="bg-slate-50 rounded-2xl p-6 mb-6 border border-slate-100">
+                <div class="text-sm text-slate-500 mb-1">最終得分</div>
+                <div id="final-score-text" class="text-4xl font-extrabold text-blue-600 mb-2">0 分</div>
+                <div id="final-stats-text" class="text-sm text-slate-600">正確 0 題 / 錯誤 0 題</div>
+            </div>
+
+            <button onclick="location.reload()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-semibold shadow-lg shadow-blue-200 transition">
+                重新隨機抽題測驗
+            </button>
         </div>
+
     </main>
 
-    <!-- 底部資訊 -->
-    <footer class="text-center py-4 text-slate-500 text-sm">
-        水污染防治設施甲級學科題庫互動練習
+    <!-- 底部版權 -->
+    <footer class="text-center py-4 text-slate-400 text-xs">
+        水污染防治設施操作維護 (甲級) 智慧練習系統
     </footer>
 
-    <!-- 引入題庫與主邏輯 -->
+    <!-- 引入題庫與主程式 -->
     <script src="quiz-data.js"></script>
     <script src="app.js"></script>
 </body>
