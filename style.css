@@ -1,0 +1,7 @@
+/* 可依需求自訂額外的轉場或樣式 */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.option-btn {
+    transition: all 0.2s ease-in-out;
+}
