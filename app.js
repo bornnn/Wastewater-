@@ -31,7 +31,7 @@ function loadQuestion() {
 
     const currentQ = activeQuiz[currentIndex];
     
-    // 更新進度
+    // 更新頂部進度與計分
     questionCounter.innerText = `第 ${currentIndex + 1} 題 / 共 50 題`;
     scoreKeeper.innerText = `目前得分: ${score}`;
     let progressPercent = ((currentIndex) / 50) * 100;
@@ -39,7 +39,7 @@ function loadQuestion() {
 
     questionTitle.innerText = currentQ.q;
 
-    // 渲染選項
+    // 動態生成選項按鈕
     currentQ.options.forEach((opt) => {
         let optLetter = opt.substring(1, 2); // 擷取 A, B, C, D
         let btn = document.createElement("button");
@@ -57,6 +57,7 @@ function selectOption(selectedLetter, selectedBtn, correctAns, rationale) {
 
     const allButtons = optionsContainer.querySelectorAll("button");
     
+    // 鎖定所有選項並標示正解與錯選
     allButtons.forEach(btn => {
         let letter = btn.querySelector("span").innerText;
         btn.disabled = true;
@@ -71,17 +72,18 @@ function selectOption(selectedLetter, selectedBtn, correctAns, rationale) {
         }
     });
 
+    // 顯示詳細解析回饋框
     feedbackBox.classList.remove("hidden");
     let explanation = rationale || "本題對應水污染防治設施甲級操作維護規範與相關設計標準。";
 
     if (selectedLetter === correctAns) {
         score += 2; // 50題制，每題2分共100分
         scoreKeeper.innerText = `目前得分: ${score}`;
-        feedbackBox.className = "mt-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-800 space-y-2";
-        feedbackText.innerHTML = `<div><strong>✔️ 回答正確！</strong></div><div class="text-sm font-normal text-green-700 mt-1">💡 <strong>詳細解析：</strong>${explanation}</div>`;
+        feedbackBox.className = "mt-6 p-5 rounded-xl bg-green-50 border border-green-200 text-green-800 space-y-2 shadow-sm";
+        feedbackText.innerHTML = `<div class="font-bold text-base">✔️ 回答正確！</div><div class="text-sm font-normal text-green-700 mt-2 leading-relaxed">💡 <strong>詳細解析：</strong>${explanation}</div>`;
     } else {
-        feedbackBox.className = "mt-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 space-y-2";
-        feedbackText.innerHTML = `<div><strong>❌ 回答錯誤！正確答案是：(${correctAns})</strong></div><div class="text-sm font-normal text-red-700 mt-1">💡 <strong>詳細解析：</strong>${explanation}</div>`;
+        feedbackBox.className = "mt-6 p-5 rounded-xl bg-red-50 border border-red-200 text-red-800 space-y-2 shadow-sm";
+        feedbackText.innerHTML = `<div class="font-bold text-base">❌ 回答錯誤！正確答案是：(${correctAns})</div><div class="text-sm font-normal text-red-700 mt-2 leading-relaxed">💡 <strong>詳細解析：</strong>${explanation}</div>`;
     }
 
     nextBtn.classList.remove("hidden");
@@ -92,7 +94,7 @@ nextBtn.onclick = () => {
     if (currentIndex < 50) {
         loadQuestion();
     } else {
-        // 顯示結算畫面
+        // 顯示最終結算畫面
         quizCard.classList.add("hidden");
         resultCard.classList.remove("hidden");
         finalScoreText.innerText = `${score} 分`;
@@ -102,5 +104,5 @@ nextBtn.onclick = () => {
     }
 };
 
-// 初始化載入
+// 初始化載入第一題
 loadQuestion();
