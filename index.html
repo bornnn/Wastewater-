@@ -19,20 +19,17 @@
     <!-- 主內容區 -->
     <main class="max-w-2xl mx-auto w-full p-4 my-4 flex-grow">
         
-        <!-- 章節與級別切換選單 -->
+        <!-- 章節切換選單 -->
         <div class="bg-white rounded-2xl shadow-sm p-4 mb-4 border border-slate-100">
-            <h3 class="text-sm font-bold text-slate-700 mb-2">選擇練習章節與級別：</h3>
-            <div id="chapter-buttons" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                <button onclick="switchChapter('ch1')" id="btn-ch1" class="p-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow">01 概論與實務(甲乙)</button>
-                <button onclick="switchChapter('ch2')" id="btn-ch2" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">02 法規簡介(甲乙)</button>
-                <button onclick="switchChapter('ch3')" id="btn-ch3" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">03 許可與申報(甲乙)</button>
-                <button onclick="switchChapter('ch4_b')" id="btn-ch4_b" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">04 物化處理(乙級)</button>
-                <button onclick="switchChapter('ch4_a')" id="btn-ch4_a" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">04 物化處理(甲級)</button>
-                <button onclick="switchChapter('ch5')" id="btn-ch5" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">05 生物處理(甲乙)</button>
-                <button onclick="switchChapter('ch6_b')" id="btn-ch6_b" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">06 污泥減量(乙級)</button>
-                <button onclick="switchChapter('ch6_a')" id="btn-ch6_a" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">06 污泥減量(甲級)</button>
-                <button onclick="switchChapter('ch7_b')" id="btn-ch7_b" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">07 操作應變(乙級)</button>
-                <button onclick="switchChapter('ch7_a')" id="btn-ch7_a" class="p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">07 操作應變(甲級)</button>
+            <h3 class="text-sm font-bold text-slate-700 mb-2">選擇練習章節：</h3>
+            <div id="chapter-buttons" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <button onclick="switchChapter('ch1')" id="btn-ch1" class="p-2.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow">01 概論與實務</button>
+                <button onclick="switchChapter('ch2')" id="btn-ch2" class="p-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">02 法規簡介</button>
+                <button onclick="switchChapter('ch3')" id="btn-ch3" class="p-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">03 許可與申報</button>
+                <button onclick="switchChapter('ch4')" id="btn-ch4" class="p-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">04 物化處理技術</button>
+                <button onclick="switchChapter('ch5')" id="btn-ch5" class="p-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">05 生物處理技術</button>
+                <button onclick="switchChapter('ch6')" id="btn-ch6" class="p-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">06 廢水高級處理</button>
+                <button onclick="switchChapter('ch7')" id="btn-ch7" class="p-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">07 設施操作與應變</button>
             </div>
         </div>
 
@@ -106,13 +103,10 @@
     <script src="quiz-data.js"></script>
     <script src="chapter2-data.js"></script>
     <script src="chapter3-data.js"></script>
-    <script src="chapter4_b-data.js"></script>
-    <script src="chapter4_a-data.js"></script>
+    <script src="chapter4-data.js"></script>
     <script src="chapter5-data.js"></script>
-    <script src="chapter6_b-data.js"></script>
-    <script src="chapter6_a-data.js"></script>
-    <script src="chapter7_b-data.js"></script>
-    <script src="chapter7_a-data.js"></script>
+    <script src="chapter6-data.js"></script>
+    <script src="chapter7-data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
