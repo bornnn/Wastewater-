@@ -9,13 +9,10 @@ const chapterMeta = {
     ch1: { name: "01水污染防治概論與實務(甲乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/01水污染防治概論與實務練習題(甲乙級).pdf" },
     ch2: { name: "02水污染防治法規簡介(甲乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/02水污染防治法規簡介練習題(甲乙級).pdf" },
     ch3: { name: "03水污染防治許可申請與檢測申報法規(甲乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/03水污染防治許可申請與檢測申報法規練習題(甲乙級).pdf" },
-    ch4_b: { name: "04廢(污)水物化處理技術原理與實務(乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/04廢(污)水物化處理技術原理與實務練習題(乙級).pdf" },
-    ch4_a: { name: "04廢(污)水物化處理技術原理與實務(甲級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/04廢(污)水物化處理技術原理與實務練習題(甲級).pdf" },
-    ch5: { name: "05廢(污)水生物處理技術原理與實務(甲乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/05廢(污)水生物處理技術原理與實務練習題(甲乙級).pdf" },
-    ch6_b: { name: "06污泥減量與處理技術及實務(乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/06污泥減量與處理技術及實務練習題(乙級).pdf" },
-    ch6_a: { name: "06污泥減量與處理技術及實務(甲級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/06污泥減量與處理技術及實務練習題(甲級).pdf" },
-    ch7_b: { name: "07水污染防治設施操作維護、管理與緊急應變(乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/07水污染防治設施操作維護、管理與緊急應變練習題(乙級).pdf" },
-    ch7_a: { name: "07水污染防治設施操作維護、管理與緊急應變(甲級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/07水污染防治設施操作維護、管理與緊急應變練習題(甲級).pdf" }
+    ch4: { name: "04水污染防治設施與原理", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/04水污染防治設施與原理練習題.pdf" },
+    ch5: { name: "05廢(污)水生物處理技術與應用", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/05廢(污)水生物處理技術與應用練習題.pdf" },
+    ch6: { name: "06廢水高級處理與水質淨化技術", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/06廢水高級處理與水質淨化技術練習題.pdf" },
+    ch7: { name: "07設施操作維護、管理與緊急應變", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/07水污染防治設施操作維護、管理與緊急應變練習題.pdf" }
 };
 
 const questionCounter = document.getElementById("question-counter");
@@ -36,25 +33,24 @@ const downloadLink = document.getElementById("download-link");
 
 function initQuiz(chapterKey) {
     currentChapter = chapterKey;
-    let selectedData = quizData; // 預設第1章
+    let selectedData = quizData; // 預設防呆
 
+    if (chapterKey === 'ch1' && typeof quizData !== 'undefined') selectedData = quizData; // 假設ch1暫用quizData或依您的專案而定
     if (chapterKey === 'ch2' && typeof chapter2Data !== 'undefined') selectedData = chapter2Data;
     if (chapterKey === 'ch3' && typeof chapter3Data !== 'undefined') selectedData = chapter3Data;
-    if (chapterKey === 'ch4_b' && typeof chapter4_bData !== 'undefined') selectedData = chapter4_bData;
-    if (chapterKey === 'ch4_a' && typeof chapter4_aData !== 'undefined') selectedData = chapter4_aData;
+    if (chapterKey === 'ch4' && typeof chapter4Data !== 'undefined') selectedData = chapter4Data;
     if (chapterKey === 'ch5' && typeof chapter5Data !== 'undefined') selectedData = chapter5Data;
-    if (chapterKey === 'ch6_b' && typeof chapter6_bData !== 'undefined') selectedData = chapter6_bData;
-    if (chapterKey === 'ch6_a' && typeof chapter6_aData !== 'undefined') selectedData = chapter6_aData;
-    if (chapterKey === 'ch7_b' && typeof chapter7_bData !== 'undefined') selectedData = chapter7_bData;
-    if (chapterKey === 'ch7_a' && typeof chapter7_aData !== 'undefined') selectedData = chapter7_aData;
+    if (chapterKey === 'ch6' && typeof chapter6Data !== 'undefined') selectedData = chapter6Data;
+    if (chapterKey === 'ch7' && typeof chapter7Data !== 'undefined') selectedData = chapter7Data;
 
     // 更新教材來源與下載按鈕資訊
-    sourceText.innerText = chapterMeta[chapterKey].source;
-    downloadLink.href = chapterMeta[chapterKey].url; 
-    downloadLink.innerText = `📥 下載 PDF 教材`;
+    if (chapterMeta[chapterKey]) {
+        sourceText.innerText = chapterMeta[chapterKey].source;
+        downloadLink.href = chapterMeta[chapterKey].url; 
+        downloadLink.innerText = `📥 下載 PDF 教材`;
+    }
 
-    // 依據頁數比例與題庫總數動態分配抽題數（短篇章30題，長篇章最多抽50題）
-    let defaultCount = (chapterKey === 'ch1' || chapterKey === 'ch2') ? 30 : 50;
+    let defaultCount = 50;
     let targetCount = Math.min(selectedData.length, defaultCount);
     activeQuiz = [...selectedData].sort(() => 0.5 - Math.random()).slice(0, targetCount);
 
@@ -68,7 +64,7 @@ function initQuiz(chapterKey) {
 }
 
 function switchChapter(chapterKey) {
-    const keys = ['ch1', 'ch2', 'ch3', 'ch4_b', 'ch4_a', 'ch5', 'ch6_b', 'ch6_a', 'ch7_b', 'ch7_a'];
+    const keys = ['ch1', 'ch2', 'ch3', 'ch4', 'ch5', 'ch6', 'ch7'];
     keys.forEach(k => {
         let btn = document.getElementById(`btn-${k}`);
         if (btn) {
