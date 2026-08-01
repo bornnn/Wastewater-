@@ -6,13 +6,13 @@ let currentChapter = 'ch1';
 
 // 章節對應的教材來源與 GitHub 檔案下載連結設定
 const chapterMeta = {
-    ch1: { name: "01水污染防治概論與實務(甲乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/01水污染防治概論與實務練習題(甲乙級).pdf" },
-    ch2: { name: "02水污染防治法規簡介(甲乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/02水污染防治法規簡介練習題(甲乙級).pdf" },
-    ch3: { name: "03水污染防治許可申請與檢測申報法規(甲乙級)", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/03水污染防治許可申請與檢測申報法規練習題(甲乙級).pdf" },
-    ch4: { name: "04水污染防治設施與原理", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/04水污染防治設施與原理練習題.pdf" },
+    ch1: { name: "01水污染防治概論與實務", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/01水污染防治概論與實務練習題(甲乙級).pdf" },
+    ch2: { name: "02水污染防治法規簡介", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/02水污染防治法規簡介練習題(甲乙級).pdf" },
+    ch3: { name: "03水污染防治許可申請與檢測申報法規", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/03水污染防治許可申請與檢測申報法規練習題(甲乙級).pdf" },
+    ch4: { name: "04廢(污)水物化處理技術原理與實務", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/04廢(污)水物化處理技術原理與實務練習題.pdf" },
     ch5: { name: "05廢(污)水生物處理技術與應用", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/05廢(污)水生物處理技術與應用練習題.pdf" },
     ch6: { name: "06廢水高級處理與水質淨化技術", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/06廢水高級處理與水質淨化技術練習題.pdf" },
-    ch7: { name: "07設施操作維護、管理與緊急應變", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/07水污染防治設施操作維護、管理與緊急應變練習題.pdf" }
+    ch7: { name: "07水污染防治設施操作維護、管理與緊急應變", source: "國家環境研究院（國環院）專責人員訓練教材", url: "https://github.com/bornnn/Wastewater-/raw/main/07水污染防治設施操作維護、管理與緊急應變練習題.pdf" }
 };
 
 const questionCounter = document.getElementById("question-counter");
@@ -33,9 +33,9 @@ const downloadLink = document.getElementById("download-link");
 
 function initQuiz(chapterKey) {
     currentChapter = chapterKey;
-    let selectedData = quizData; // 預設防呆
+    let selectedData = quizData; // 預設第1章
 
-    if (chapterKey === 'ch1' && typeof quizData !== 'undefined') selectedData = quizData; // 假設ch1暫用quizData或依您的專案而定
+    if (chapterKey === 'ch1' && typeof quizData !== 'undefined') selectedData = quizData;
     if (chapterKey === 'ch2' && typeof chapter2Data !== 'undefined') selectedData = chapter2Data;
     if (chapterKey === 'ch3' && typeof chapter3Data !== 'undefined') selectedData = chapter3Data;
     if (chapterKey === 'ch4' && typeof chapter4Data !== 'undefined') selectedData = chapter4Data;
@@ -69,9 +69,9 @@ function switchChapter(chapterKey) {
         let btn = document.getElementById(`btn-${k}`);
         if (btn) {
             if (k === chapterKey) {
-                btn.className = "p-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow";
+                btn.className = "p-2.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow";
             } else {
-                btn.className = "p-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+                btn.className = "p-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
             }
         }
     });
