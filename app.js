@@ -46,12 +46,12 @@ function loadQuestion() {
         btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/50 font-medium text-slate-700 transition duration-150 flex items-center shadow-sm";
         btn.innerHTML = `<span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold mr-3 text-sm shrink-0">${optLetter}</span> <span class="flex-grow">${opt.substring(3)}</span>`;
         
-        btn.onclick = () => selectOption(optLetter, btn, currentQ.ans);
+        btn.onclick = () => selectOption(optLetter, btn, currentQ.ans, currentQ.rationale);
         optionsContainer.appendChild(btn);
     });
 }
 
-function selectOption(selectedLetter, selectedBtn, correctAns) {
+function selectOption(selectedLetter, selectedBtn, correctAns, rationale) {
     if (isAnswered) return;
     isAnswered = true;
 
@@ -72,14 +72,16 @@ function selectOption(selectedLetter, selectedBtn, correctAns) {
     });
 
     feedbackBox.classList.remove("hidden");
+    let explanation = rationale || "本題對應水污染防治設施甲級操作維護規範與相關設計標準。";
+
     if (selectedLetter === correctAns) {
         score += 2; // 50題制，每題2分共100分
         scoreKeeper.innerText = `目前得分: ${score}`;
-        feedbackBox.className = "mt-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-800";
-        feedbackText.innerText = "✔️ 回答正確！太棒了！";
+        feedbackBox.className = "mt-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-800 space-y-2";
+        feedbackText.innerHTML = `<div><strong>✔️ 回答正確！</strong></div><div class="text-sm font-normal text-green-700 mt-1">💡 <strong>詳細解析：</strong>${explanation}</div>`;
     } else {
-        feedbackBox.className = "mt-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-800";
-        feedbackText.innerText = `❌ 回答錯誤！正確答案是：(${correctAns})`;
+        feedbackBox.className = "mt-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 space-y-2";
+        feedbackText.innerHTML = `<div><strong>❌ 回答錯誤！正確答案是：(${correctAns})</strong></div><div class="text-sm font-normal text-red-700 mt-1">💡 <strong>詳細解析：</strong>${explanation}</div>`;
     }
 
     nextBtn.classList.remove("hidden");
